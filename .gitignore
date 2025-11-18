@@ -1,2 +1,4 @@
 .vscode
 build
+vcpkg_installed
+vcpkg*.json
