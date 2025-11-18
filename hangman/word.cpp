@@ -26,9 +26,6 @@ std::string WordGenerator::get_word_from_server() {
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
-        // Optional: follow redirects
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
         res = curl_easy_perform(curl);
 
         if(res != CURLE_OK) {
