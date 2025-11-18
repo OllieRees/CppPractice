@@ -2,6 +2,7 @@
 #include <iostream>
 
 int main(int, char**) {
-    WordGenerator wg = WordGenerator();
+    WordFetcher* fetcher = new WordFetcherAPI();
+    WordGenerator wg = WordGenerator(fetcher);
     std::cout << wg.generate_word() << std::endl;
 }

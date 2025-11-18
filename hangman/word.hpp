@@ -1,12 +1,20 @@
 #include <string>
 
 
-/***
- * Generates a word for the hangman game.
- */
+class WordFetcher {
+    public:
+        virtual std::string fetch_word() = 0;
+};
+
+class WordFetcherAPI: public WordFetcher {
+    public:
+        virtual std::string fetch_word();
+};
+
 class WordGenerator {
     public:
+        WordGenerator(WordFetcher *fetcher) : fetcher(fetcher) {}
         const std::string generate_word();
     private:
-        std::string get_word_from_server();
+        WordFetcher *fetcher;
 };
