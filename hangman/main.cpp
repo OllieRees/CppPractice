@@ -4,5 +4,5 @@
 int main(int, char**) {
     WordFetcher* fetcher = new WordFetcherAPI();
     WordGenerator wg = WordGenerator(fetcher);
-    std::cout << wg.generate_word() << std::endl;
+    std::cout << wg.generate_word()->get_word() << std::endl;
 }

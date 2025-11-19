@@ -6,7 +6,7 @@
 using json = nlohmann::json;
 
 
-const std::string WordGenerator::generate_word() {
+Word* WordGenerator::generate_word() {
     return this->fetcher->fetch_word();
 }
 
@@ -15,7 +15,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-std::string WordFetcherAPI::fetch_word() {
+Word* WordFetcherAPI::fetch_word() {
     CURL* curl;
     CURLcode res;
     std::string readBuffer;
@@ -36,5 +36,5 @@ std::string WordFetcherAPI::fetch_word() {
         curl_easy_cleanup(curl);
     }
     json j = json::parse(readBuffer);
-    return j[0];
+    return new Word(j[0]);
 }
