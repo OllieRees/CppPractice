@@ -1,12 +1,14 @@
+#include <iostream>
 #include <string>
+#include <set>
 
 
 class Word {
     public:
         Word(const std::string& word) : word(word) {}
+        std::set<char> get_characters() { return std::set<char>(this -> word.begin(), this -> word.end()); }
         const std::string& get_word() const { return word; }
         const size_t length() const { return word.length(); }
-        bool contains_character(char c) const { return word.find(c) != std::string::npos; }
     private:
         const std::string word;    
 };
