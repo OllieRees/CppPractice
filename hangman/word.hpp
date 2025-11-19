@@ -5,7 +5,7 @@ class Word {
     public:
         Word(const std::string& word) : word(word) {}
         const std::string& get_word() const { return word; }
-        const size_t get_length() const { return word.length(); }
+        const size_t length() const { return word.length(); }
         bool contains_character(char c) const { return word.find(c) != std::string::npos; }
     private:
         const std::string word;    
