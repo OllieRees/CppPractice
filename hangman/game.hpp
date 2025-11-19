@@ -23,9 +23,11 @@ class Game {
 class State {
     public: 
         State(Word* word) : word(word) {}
-        void add_guess(char c) { this->correct_letters_guessed.insert(c); }
-        bool has_guessed_word() { return this -> word->get_characters() == this -> correct_letters_guessed; }
+        bool has_guessed_word() const { return word->get_characters() == correct_letters_guessed; }
+        bool is_successful_guess(char c) const { return word->contains_character(c); }
         int get_wrong_guesses_count() const { return wrong_guesses_count; }
+        void increment_wrong_guesses_count() { wrong_guesses_count++; }
+        void add_correct_guess(char c) { correct_letters_guessed.insert(c); } 
     private:
         std::set<char> correct_letters_guessed = std::set<char>();
         int wrong_guesses_count = 0;
