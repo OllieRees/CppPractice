@@ -5,6 +5,7 @@
 class Config {
     public:
         Config(int lives_count) : lives_count(lives_count) {}
+        int get_lives_count() const { return lives_count; }
     private:
         const int lives_count;
 };
