@@ -5,6 +5,6 @@ project(practice VERSION 0.1.0 LANGUAGES CXX)
 find_package(CURL REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
-add_executable(hangman hangman/main.cpp hangman/word.cpp)
+add_executable(hangman hangman/main.cpp hangman/word.cpp hangman/display.cpp)
 target_link_libraries(hangman PRIVATE CURL::libcurl)
 target_link_libraries(hangman PRIVATE nlohmann_json::nlohmann_json)
