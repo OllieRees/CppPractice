@@ -1,20 +1,25 @@
+#include <iostream>
 #include <string>
+#include <set>
 
 
-class WordFetcher {
+class Word {
     public:
-        virtual std::string fetch_word() = 0;
-};
-
-class WordFetcherAPI: public WordFetcher {
-    public:
-        virtual std::string fetch_word();
+        Word(const std::string& word) : word(word) {}
+        std::set<char> get_characters() { return std::set<char>(this -> word.begin(), this -> word.end()); }
+        bool contains_character(char c) { return this -> word.find(c) != std::string::npos; }
+        const size_t length() const { return word.length(); }
+        const std::string get_word() {return word; }
+    private:
+        const std::string word;    
 };
 
 class WordGenerator {
     public:
-        WordGenerator(WordFetcher *fetcher) : fetcher(fetcher) {}
-        const std::string generate_word();
-    private:
-        WordFetcher *fetcher;
+        virtual Word* generate_word() = 0;
+};
+
+class WordGeneratorAPI: public WordGenerator {
+    public:
+        Word* generate_word();
 };

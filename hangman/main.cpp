@@ -1,8 +1,9 @@
-#include "word.cpp"
+#include "display.hpp"
 #include <iostream>
 
 int main(int, char**) {
-    WordFetcher* fetcher = new WordFetcherAPI();
-    WordGenerator wg = WordGenerator(fetcher);
-    std::cout << wg.generate_word() << std::endl;
+    Game* game = new Game((new WordGeneratorAPI())->generate_word(), 6);
+    Display* display = new Console(game);
+    std::cout << display->get_game()->get_word()->get_word() << std::endl;
+    display -> display_word();
 }
