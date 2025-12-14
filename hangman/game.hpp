@@ -1,4 +1,4 @@
-#include "word.cpp"
+#include "word.hpp"
 
 class Settings {
     public:
