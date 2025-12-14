@@ -6,16 +6,12 @@
 using json = nlohmann::json;
 
 
-Word* WordGenerator::generate_word() {
-    return this->fetcher->fetch_word();
-}
-
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
 
-Word* WordFetcherAPI::fetch_word() {
+Word* WordGeneratorAPI::generate_word() {
     CURL* curl;
     CURLcode res;
     std::string readBuffer;
