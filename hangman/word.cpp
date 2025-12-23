@@ -10,11 +10,9 @@ std::set<char> Word::get_characters() const {
     return std::set<char>(this -> word.begin(), this -> word.end());
 }
 
-
 bool Word::contains_character(char c) const {
     return this -> word.find(c) != std::string::npos;
 }
-
 
 
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
