@@ -1,15 +1,14 @@
 #include "game.hpp"
 #include <set>
 
-void Game::make_guess(char c) {
-    if (this -> has_lost()) {
-        throw std::runtime_error("Can't make a guess when you've lost");
-    }
-
+State Game::make_guess(char c) {
+    if (this->has_lost()) { return State::lose; }
     guesses.push_back(c);
+    if (this->has_won()) { return State::win; }
     if (!(this -> word -> contains_character(c))) {
         wrong_guesses++;
     };
+    return State::in_progress;
 }
 
 bool Game::has_won() const {    
