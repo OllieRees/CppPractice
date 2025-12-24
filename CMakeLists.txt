@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD 23)
 project(practice VERSION 0.1.0 LANGUAGES CXX)
 
 find_package(CURL REQUIRED)
+find_package(GTest CONFIG REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
 add_executable(hangman)
