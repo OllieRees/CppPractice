@@ -22,6 +22,6 @@ class Game {
         Settings* settings;
         std::vector<char> guesses;
         int wrong_guesses = 0;
-        bool has_lost() const { return wrong_guesses >= settings -> get_max_lives(); }
+        bool has_lost() const;
         bool has_won() const;
 };
