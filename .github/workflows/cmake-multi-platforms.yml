@@ -56,6 +56,10 @@ jobs:
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
+          - os: windows-latest
+            vcpkg_triplet: x64-linux-release
+          - os: ubuntu-latest
+            vcpkg_triplet: x64-windows-release
 
     steps:
     - uses: actions/checkout@v4
