@@ -35,9 +35,8 @@ jobs:
         build_type: [Release]
         c_compiler: [gcc]
         cpp_compiler: [g++]
-        config: 
-          - os: ubuntu-latest
-            vcpkg_triplet: x64-linux-release
+        os: [ubuntu-latest]
+        vcpkg_triplet: [x64-linux-release]
 
     steps:
     - uses: actions/checkout@v4
@@ -54,7 +53,7 @@ jobs:
       uses: johnwason/vcpkg-action@v7
       with:
         manifest-dir: ${{ github.workspace }}
-        triplet: ${{ matrix.config.vcpkg_triplet }}
+        triplet: ${{ matrix.vcpkg_triplet }}
         token: ${{ github.token }}
 
     - name: Configure CMake
