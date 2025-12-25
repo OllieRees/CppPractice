@@ -1,4 +1,4 @@
-#include "word.hpp"
+#include "include/word.hpp"
 #include <iostream>
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>

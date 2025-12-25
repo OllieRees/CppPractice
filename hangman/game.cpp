@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "include/game.hpp"
 #include <set>
 
 State Game::make_guess(char c) {
