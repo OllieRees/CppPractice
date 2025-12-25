@@ -20,26 +20,26 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-Word* WordGeneratorAPI::generate_word() {
-    CURL* curl;
-    CURLcode res;
+json WordGeneratorAPI::request_word_from_api() {
     std::string readBuffer;
-
-    curl = curl_easy_init();
+    CURL* curl = curl_easy_init();
+    
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL, "https://random-word-api.vercel.app/api?words=1");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
-        res = curl_easy_perform(curl);
+        CURLcode res = curl_easy_perform(curl);
 
         if(res != CURLE_OK) {
-            std::cerr << "curl_easy_perform() failed: "
-                      << curl_easy_strerror(res) << std::endl;
+            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         } 
 
         curl_easy_cleanup(curl);
     }
-    json j = json::parse(readBuffer);
-    return new Word(j[0]);
+    return json::parse(readBuffer);
+}
+
+Word* WordGeneratorAPI::generate_word() {
+    return new Word( this->request_word_from_api()[0] );
 }

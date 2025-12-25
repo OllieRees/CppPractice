@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 
 class Word {
@@ -21,4 +24,6 @@ class WordGenerator {
 class WordGeneratorAPI: public WordGenerator {
     public:
         Word* generate_word();
+    private: 
+        json request_word_from_api();
 };
