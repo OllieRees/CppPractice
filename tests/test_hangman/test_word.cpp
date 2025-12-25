@@ -1,4 +1,4 @@
-#include <word.h>
+#include "word.hpp"
 #include <gtest/gtest.h>
 
 class TestWord : public testing::Test {

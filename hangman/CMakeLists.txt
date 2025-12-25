@@ -1,3 +1,6 @@
+find_package(CURL REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
 add_executable(hangman main.cpp)
 
 add_library(
