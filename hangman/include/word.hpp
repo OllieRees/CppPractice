@@ -8,7 +8,6 @@ class Word {
         Word(const std::string& word) : word(word) {}
         std::set<char> get_characters() const;
         bool contains_character(char c) const;
-        const size_t length() const { return word.length(); }
         const std::string get_word() const { return word; }
     private:
         const std::string word;    
