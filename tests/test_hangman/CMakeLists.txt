@@ -6,6 +6,7 @@ target_link_libraries(hangman_test
     PRIVATE 
         hangmanlib
         GTest::gtest_main
+        GTest::gmock_main
 )
 
 include(GoogleTest)
