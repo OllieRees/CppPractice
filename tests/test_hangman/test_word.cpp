@@ -17,3 +17,13 @@ TEST(TestWord, getCharactersWithDuplicates) {
   EXPECT_EQ(word->get_characters().size(), 4);
   EXPECT_EQ(word->get_characters(), expected_char_set);
 }
+
+TEST(TestWord, doesContainCharacter) {
+    Word * word = new Word("hello");
+    EXPECT_TRUE(word->contains_character('h'));
+}
+
+TEST(TestWord, doesNotContainCharacter) {
+    Word * word = new Word("hello");
+    EXPECT_FALSE(word->contains_character('a'));
+}
