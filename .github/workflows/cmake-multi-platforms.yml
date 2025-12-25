@@ -18,7 +18,7 @@ env:
   VCPKG_FEATURE_FLAGS: dependencygraph
 
 jobs:
-  build:
+  cpp-multi-platform-with-tests:
     runs-on: ${{ matrix.os }}
 
     strategy:
