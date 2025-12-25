@@ -1,12 +1,12 @@
 #include "word.hpp"
 #include <gtest/gtest.h>
 
-class TestWord : public testing::Test {
-    protected:
-        Word * word;
-};
+TEST(TestWord, getCharactersNoDuplicates) {
+  Word * word = new Word("team");
+  EXPECT_EQ(word->get_characters().size(), 4);
+}
 
-TEST(HelloTest, BasicAssertions) {
-  EXPECT_STRNE("hello", "world");
-  EXPECT_EQ(7 * 6, 42);
+TEST(TestWord, getCharactersWithDuplicates) {
+  Word * word = new Word("hello");
+  EXPECT_EQ(word->get_characters().size(), 4);
 }
