@@ -1,4 +1,5 @@
 .vscode
+CMakeUserPresets.json
 build
 vcpkg_installed
 vcpkg-configuration.json
