@@ -16,6 +16,16 @@ class Word {
         const std::string word;    
 };
 
+class WordGeneratorAPIClient {
+    public:
+        virtual std::string request_word_from_api() = 0;
+};
+
+class WordGeneratorVercelClient: public WordGeneratorAPIClient {
+    public:
+        std::string request_word_from_api();
+};
+
 class WordGenerator {
     public:
         virtual Word* generate_word() = 0;
@@ -23,7 +33,8 @@ class WordGenerator {
 
 class WordGeneratorAPI: public WordGenerator {
     public:
+        WordGeneratorAPI(WordGeneratorAPIClient* client): client(client) {}
         Word* generate_word();
     private: 
-        json request_word_from_api();
+        WordGeneratorAPIClient* client;
 };

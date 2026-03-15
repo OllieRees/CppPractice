@@ -20,7 +20,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-json WordGeneratorAPI::request_word_from_api() {
+std::string WordGeneratorVercelClient::request_word_from_api() {
     std::string readBuffer;
     CURL* curl = curl_easy_init();
     
@@ -37,9 +37,9 @@ json WordGeneratorAPI::request_word_from_api() {
 
         curl_easy_cleanup(curl);
     }
-    return json::parse(readBuffer);
+    return json::parse(readBuffer)[0];
 }
 
 Word* WordGeneratorAPI::generate_word() {
-    return new Word( this->request_word_from_api()[0] );
+    return new Word( this->client->request_word_from_api() );
 }
