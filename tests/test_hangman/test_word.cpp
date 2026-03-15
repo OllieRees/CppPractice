@@ -6,9 +6,9 @@
 using ::testing::Return;
 using json = nlohmann::json;
 
-class MockWordGeneratorAPI : public WordGeneratorAPI {
+class MockClient : public WordGeneratorAPIClient {
   public:
-    MOCK_METHOD(json, request_word_from_api, (), ());
+    MOCK_METHOD(std::string, request_word_from_api, (), (override));
 };
 
 TEST(TestWord, getCharactersNoDuplicates) {
@@ -35,4 +35,12 @@ TEST(TestWord, doesContainCharacter) {
 TEST(TestWord, doesNotContainCharacter) {
     Word * word = new Word("hello");
     EXPECT_FALSE(word->contains_character('a'));
+}
+
+TEST(TestWordGeneratorAPI, generateWord) {
+  MockClient client;
+  ON_CALL(client, request_word_from_api()).WillByDefault(Return("hello"));
+  WordGenerator * word_generator = new WordGeneratorAPI(&client);
+  Word * word = word_generator->generate_word();
+  EXPECT_EQ(word->get_word(), "hello");
 }
