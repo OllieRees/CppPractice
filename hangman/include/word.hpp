@@ -19,7 +19,7 @@ class WordGeneratorAPIClient {
         virtual std::string request_word_from_api() = 0;
 };
 
-class WordGeneratorVercelClient: public WordGeneratorAPIClient {
+class WordGeneratorRandomWordClient: public WordGeneratorAPIClient {
     public:
         std::string request_word_from_api();
 };
