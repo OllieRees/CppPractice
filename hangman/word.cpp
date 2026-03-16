@@ -25,6 +25,7 @@ std::string WordGeneratorRandomWordClient::request_word_from_api() {
     CURL* curl = curl_easy_init();
     
     if(curl) {
+        // Using https://random-word-api.herokuapp.com/home
         curl_easy_setopt(curl, CURLOPT_URL, "https://random-word-api.herokuapp.com/word");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
