@@ -16,5 +16,9 @@ bool Game::has_lost() const {
 }
 
 bool Game::has_won() const {
-    return false;
+    // TODO: Improve performance so we can utilise set operations (subset/intersection)
+    const auto& word_chars = this->word->get_characters();
+    return std::all_of(word_chars.begin(), word_chars.end(), [&](char c) {
+        return std::find(this->guesses.begin(), this->guesses.end(), c) != this->guesses.end();
+    });
 }
