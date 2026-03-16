@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <nlohmann/json.hpp>
 
 
 class Word {
@@ -8,10 +9,19 @@ class Word {
         Word(const std::string& word) : word(word) {}
         std::set<char> get_characters() const;
         bool contains_character(char c) const;
-        const size_t length() const { return word.length(); }
         const std::string get_word() const { return word; }
     private:
         const std::string word;    
+};
+
+class WordGeneratorAPIClient {
+    public:
+        virtual std::string request_word_from_api() = 0;
+};
+
+class WordGeneratorVercelClient: public WordGeneratorAPIClient {
+    public:
+        std::string request_word_from_api();
 };
 
 class WordGenerator {
@@ -21,5 +31,8 @@ class WordGenerator {
 
 class WordGeneratorAPI: public WordGenerator {
     public:
+        WordGeneratorAPI(WordGeneratorAPIClient* client): client(client) {}
         Word* generate_word();
+    private: 
+        WordGeneratorAPIClient* client;
 };
