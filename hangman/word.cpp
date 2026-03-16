@@ -20,12 +20,13 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-std::string WordGeneratorVercelClient::request_word_from_api() {
+std::string WordGeneratorRandomWordClient::request_word_from_api() {
     std::string readBuffer;
     CURL* curl = curl_easy_init();
     
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://random-word-api.vercel.app/api?words=1");
+        // Using https://random-word-api.herokuapp.com/home
+        curl_easy_setopt(curl, CURLOPT_URL, "https://random-word-api.herokuapp.com/word");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
@@ -37,7 +38,8 @@ std::string WordGeneratorVercelClient::request_word_from_api() {
 
         curl_easy_cleanup(curl);
     }
-    return json::parse(readBuffer)[0];
+    auto res = json::parse(readBuffer);
+    return res[0];
 }
 
 Word* WordGeneratorAPI::generate_word() {
