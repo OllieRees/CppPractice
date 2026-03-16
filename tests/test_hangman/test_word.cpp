@@ -4,7 +4,6 @@
 #include <set>
 
 using ::testing::Return;
-using json = nlohmann::json;
 
 class MockClient : public WordGeneratorAPIClient {
   public:
