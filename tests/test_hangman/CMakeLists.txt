@@ -1,7 +1,7 @@
 find_package(GTest REQUIRED)
 find_library(hangmanlib hangmanlib HINTS "${CMAKE_PREFIX_PATH}")
 
-add_executable(hangman_test test_word.cpp test_game.cpp)
+add_executable(hangman_test test_word.cpp test_game.cpp test_display.cpp)
 target_link_libraries(hangman_test
     PRIVATE 
         hangmanlib
