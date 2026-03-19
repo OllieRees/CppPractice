@@ -32,7 +32,19 @@ TEST(TestGame, hasWonWithSomeWrongGuesses) {
   EXPECT_EQ(state, State::win);
 }
 
-TEST(TestSettings, getWord) {
+TEST(TestGame, testHasGuessedCharacter) {
+  Game * game = new Game(new Word("hello"), 1);
+  game->make_guess('h');
+  EXPECT_TRUE(game->has_guessed_character('h'));
+}
+
+TEST(TestGame, testHasNotGuessedCharacter) {
+  Game * game = new Game(new Word("hello"), 1);
+  game->make_guess('h');
+  EXPECT_FALSE(game->has_guessed_character('e'));
+}
+
+TEST(TestGame, getWord) {
   Game * game = new Game(new Word("hello"), 1);
   EXPECT_EQ(game->get_word()->get_word(), "hello");
 }

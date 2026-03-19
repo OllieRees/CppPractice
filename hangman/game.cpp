@@ -22,3 +22,7 @@ bool Game::has_won() const {
         return std::find(this->guesses.begin(), this->guesses.end(), c) != this->guesses.end();
     });
 }
+
+bool Game::has_guessed_character(char c) {
+    return std::find(this->guesses.begin(), this->guesses.end(), c) != this->guesses.end();
+}
