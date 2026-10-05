@@ -25,7 +25,6 @@ std::string WordGeneratorRandomWordClient::request_word_from_api() {
     CURL* curl = curl_easy_init();
     
     if(curl) {
-        // Using https://random-word-api.herokuapp.com/home
         curl_easy_setopt(curl, CURLOPT_URL, "https://random-word-api.herokuapp.com/word");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
@@ -40,6 +39,27 @@ std::string WordGeneratorRandomWordClient::request_word_from_api() {
     }
     auto res = json::parse(readBuffer);
     return res[0];
+}
+
+std::string WordGeneratorRandomWordWithMetadataClient::request_word_from_api() {
+    std::string readBuffer;
+    CURL* curl = curl_easy_init();
+    
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "https://random-words-api.kushcreates.com/api?language=en&words=1");
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+
+        CURLcode res = curl_easy_perform(curl);
+
+        if(res != CURLE_OK) {
+            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+        } 
+
+        curl_easy_cleanup(curl);
+    }
+    auto res = json::parse(readBuffer);
+    return res[0]["word"];
 }
 
 Word* WordGeneratorAPI::generate_word() {

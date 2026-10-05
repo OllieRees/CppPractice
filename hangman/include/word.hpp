@@ -24,6 +24,12 @@ class WordGeneratorRandomWordClient: public WordGeneratorAPIClient {
         std::string request_word_from_api();
 };
 
+class WordGeneratorRandomWordWithMetadataClient: public WordGeneratorAPIClient {
+    public:
+        std::string request_word_from_api();
+};
+
+
 class WordGenerator {
     public:
         virtual Word* generate_word() = 0;

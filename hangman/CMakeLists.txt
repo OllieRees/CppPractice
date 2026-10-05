@@ -8,6 +8,7 @@ add_library(
     word.cpp
     game.cpp
     display.cpp
+    input.cpp
 )
 target_compile_features(hangmanlib PUBLIC cxx_std_23)
 target_link_libraries( hangmanlib PUBLIC CURL::libcurl nlohmann_json::nlohmann_json )
