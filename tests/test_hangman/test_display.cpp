@@ -72,3 +72,39 @@ TEST_F(TestConsoleDisplayWord, AllCorrectGuesses) {
 
     ASSERT_EQ(this->buffer.str(), "h e l l o \n");
 }
+
+class MockConsoleHangmanDrawer : public ConsoleHangmanDrawer {
+    public:
+        MOCK_METHOD(void, draw, (int incorrect_guesses, std::ostream& out), (override));
+};
+
+TEST(TestConsoleDisplayHangman, CallsDrawerWithWrongGuesses) {
+    Game* game = new Game(new Word("hello"), 5);
+    game->make_guess('x'); // wrong 1
+    game->make_guess('z'); // wrong 2
+    game->make_guess('h'); // correct
+
+    MockConsoleHangmanDrawer mock_drawer;
+    EXPECT_CALL(mock_drawer, draw(2, testing::_)).Times(1);
+
+    Console console(game, &mock_drawer);
+    console.display_hangman();
+}
+
+TEST_F(TestConsoleDisplayWord, DisplayHangmanDefaultDrawer) {
+    Game* game = new Game(new Word("hello"), 6);
+    game->make_guess('x');
+
+    Console console(game);
+    console.display_hangman();
+
+    std::cout.rdbuf(this->prevcoutbuf);
+
+    ASSERT_EQ(this->buffer.str(), "  +---+\n");
+}
+
+TEST(TestDisplay, GetMaxLives) {
+    Game* game = new Game(new Word("hello"), 5);
+    Console console(game);
+    EXPECT_EQ(console.get_max_lives(), 5);
+}

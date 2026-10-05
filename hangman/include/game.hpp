@@ -16,6 +16,8 @@ class Game {
     public:
         Game(Word* word, int max_lives): word(word), settings(new Settings(max_lives)) {}
         Word* get_word() const { return word; }
+        int get_max_lives() const { return settings->get_max_lives(); }
+        int get_wrong_guesses() const { return wrong_guesses; }
         State make_guess(char c);
         bool has_guessed_character(char c);
     private:

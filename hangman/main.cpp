@@ -10,11 +10,13 @@ int main(int, char**) {
 
     State state = State::in_progress;
     while (state == State::in_progress) {
+        display->display_hangman();
         display->display_word();
         char guess = inputter->input_letter();
         state = game->make_guess(guess);
     }
 
+    display->display_hangman();
     display->display_word();
     if (state == State::win) {
         std::cout << "Congratulations! You won!\n";

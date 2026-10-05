@@ -7,6 +7,7 @@ add_library(
     hangmanlib
     word.cpp
     game.cpp
+    drawer.cpp
     display.cpp
     input.cpp
 )

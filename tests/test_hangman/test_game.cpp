@@ -48,3 +48,19 @@ TEST(TestGame, getWord) {
   Game * game = new Game(new Word("hello"), 1);
   EXPECT_EQ(game->get_word()->get_word(), "hello");
 }
+
+TEST(TestGame, getMaxLives) {
+  Game * game = new Game(new Word("hello"), 6);
+  EXPECT_EQ(game->get_max_lives(), 6);
+}
+
+TEST(TestGame, getWrongGuesses) {
+  Game * game = new Game(new Word("hello"), 6);
+  EXPECT_EQ(game->get_wrong_guesses(), 0);
+  game->make_guess('h'); // correct
+  EXPECT_EQ(game->get_wrong_guesses(), 0);
+  game->make_guess('x'); // incorrect
+  EXPECT_EQ(game->get_wrong_guesses(), 1);
+  game->make_guess('z'); // incorrect
+  EXPECT_EQ(game->get_wrong_guesses(), 2);
+}
