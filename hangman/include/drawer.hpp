@@ -6,8 +6,12 @@
 
 class ConsoleHangmanDrawer {
     public:
+        ConsoleHangmanDrawer(const int max_allowed_lives): max_allowed_lives(max_allowed_lives) {}
         virtual ~ConsoleHangmanDrawer() = default;
         virtual void draw(int incorrect_guesses, std::ostream& out = std::cout) = 0;
+        virtual const int get_max_allowed_lives() const { return max_allowed_lives; }
+    private:
+        const int max_allowed_lives;
 };
 
 class DefaultConsoleHangmanDrawer : public ConsoleHangmanDrawer {
@@ -18,4 +22,3 @@ class DefaultConsoleHangmanDrawer : public ConsoleHangmanDrawer {
     private:
         std::vector<std::string> hangman_lines;
 };
-

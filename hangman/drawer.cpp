@@ -1,16 +1,16 @@
 #include "include/drawer.hpp"
 #include <algorithm>
 
-DefaultConsoleHangmanDrawer::DefaultConsoleHangmanDrawer() {
-    hangman_lines = {
-        "  +---+",
-        "  |   |",
-        "  |   O",
-        "  |  /|\\",
-        "  |  / \\",
-        "========="
-    };
-}
+DefaultConsoleHangmanDrawer::DefaultConsoleHangmanDrawer()
+    : ConsoleHangmanDrawer(6),
+      hangman_lines({
+          "  +---+",
+          "  |   |",
+          "  |   O",
+          "  |  /|\\",
+          "  |  / \\",
+          "========="
+      }) {}
 
 void DefaultConsoleHangmanDrawer::draw(int incorrect_guesses, std::ostream& out) {
     if (incorrect_guesses <= 0) {
@@ -21,4 +21,3 @@ void DefaultConsoleHangmanDrawer::draw(int incorrect_guesses, std::ostream& out)
         out << hangman_lines[i] << "\n";
     }
 }
-

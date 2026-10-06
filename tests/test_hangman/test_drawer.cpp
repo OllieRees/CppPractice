@@ -67,3 +67,8 @@ TEST(TestDefaultConsoleHangmanDrawer, GetLinesCount) {
     EXPECT_EQ(drawer.get_lines().size(), 6);
 }
 
+TEST(TestDefaultConsoleHangmanDrawer, MaxAllowedLivesIsSix) {
+    DefaultConsoleHangmanDrawer drawer;
+    EXPECT_EQ(drawer.get_max_allowed_lives(), 6);
+}
+
